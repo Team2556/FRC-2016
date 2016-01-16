@@ -3,14 +3,12 @@
 #include "Commands/ExampleCommand.h"
 #include "CommandBase.h"
 
-class Robot: public IterativeRobot
-{
+class Robot: public IterativeRobot{
 private:
 	std::unique_ptr<Command> autonomousCommand;
 	SendableChooser *chooser;
 
-	void RobotInit()
-	{
+	void RobotInit(){
 		CommandBase::init();
 		chooser = new SendableChooser();
 		chooser->AddDefault("Default Auto", new ExampleCommand());
@@ -23,12 +21,10 @@ private:
      * You can use it to reset any subsystem information you want to clear when
 	 * the robot is disabled.
      */
-	void DisabledInit()
-	{
+	void DisabledInit(){
 	}
 
-	void DisabledPeriodic()
-	{
+	void DisabledPeriodic(){
 		Scheduler::GetInstance()->Run();
 	}
 
@@ -41,8 +37,7 @@ private:
 	 * You can add additional auto modes by adding additional commands to the chooser code above (like the commented example)
 	 * or additional comparisons to the if-else structure below with additional strings & commands.
 	 */
-	void AutonomousInit()
-	{
+	void AutonomousInit(){
 		/* std::string autoSelected = SmartDashboard::GetString("Auto Selector", "Default");
 		if(autoSelected == "My Auto") {
 			autonomousCommand.reset(new MyAutoCommand());
@@ -56,13 +51,11 @@ private:
 			autonomousCommand->Start();
 	}
 
-	void AutonomousPeriodic()
-	{
+	void AutonomousPeriodic(){
 		Scheduler::GetInstance()->Run();
 	}
 
-	void TeleopInit()
-	{
+	void TeleopInit(){
 		// This makes sure that the autonomous stops running when
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove
@@ -71,13 +64,11 @@ private:
 			autonomousCommand->Cancel();
 	}
 
-	void TeleopPeriodic()
-	{
+	void TeleopPeriodic(){
 		Scheduler::GetInstance()->Run();
 	}
 
-	void TestPeriodic()
-	{
+	void TestPeriodic(){
 		LiveWindow::GetInstance()->Run();
 	}
 };

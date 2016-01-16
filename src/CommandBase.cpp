@@ -6,19 +6,15 @@
 std::unique_ptr<ExampleSubsystem> CommandBase::examplesubsystem;
 std::unique_ptr<OI> CommandBase::oi;
 
-CommandBase::CommandBase(const std::string &name) :
-		Command(name)
-{
+CommandBase::CommandBase(const std::string &name):Command(name){
 }
 
 CommandBase::CommandBase() :
-		Command()
-{
+		Command(){
 
 }
 
-void CommandBase::init()
-{
+void CommandBase::init(){
 	// Create a single static instance of all of your subsystems. The following
 	// line should be repeated for each subsystem in the project.
 	examplesubsystem.reset(new ExampleSubsystem());

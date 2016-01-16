@@ -4,8 +4,7 @@
 #include "../CommandBase.h"
 #include "WPILib.h"
 
-class ExampleCommand: public CommandBase
-{
+class ExampleCommand: public CommandBase{
 public:
 	ExampleCommand();
 	void Initialize();
