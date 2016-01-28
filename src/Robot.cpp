@@ -1,19 +1,17 @@
 #include "WPILib.h"
 #include "Commands/Command.h"
-#include "Commands/ExampleCommand.h"
 #include "CommandBase.h"
 
-class Robot: public IterativeRobot{
+class Robot:public IterativeRobot{
 private:
 	std::unique_ptr<Command> autonomousCommand;
 	SendableChooser *chooser;
-
 	void RobotInit(){
 		CommandBase::init();
-		chooser = new SendableChooser();
+		/*chooser = new SendableChooser();
 		chooser->AddDefault("Default Auto", new ExampleCommand());
-		//chooser->AddObject("My Auto", new MyAutoCommand());
-		SmartDashboard::PutData("Auto Modes", chooser);
+		chooser->AddObject("My Auto", new MyAutoCommand());
+		SmartDashboard::PutData("Auto Modes", chooser);*/
 	}
 
 	/**

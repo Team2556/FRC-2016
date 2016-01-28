@@ -3,7 +3,7 @@
 
 #include <string>
 #include "Commands/Command.h"
-#include "Subsystems/ExampleSubsystem.h"
+#include "Subsystems/DriveTrain.h"
 #include "OI.h"
 #include "WPILib.h"
 
@@ -12,15 +12,14 @@
  * CommandBase stores creates and stores each control system. To access a
  * subsystem elsewhere in your code in your code use CommandBase.examplesubsystem
  */
-class CommandBase: public Command
-{
-public:
-	CommandBase(const std::string &name);
-	CommandBase();
-	static void init();
-	// Create a single static instance of all of your subsystems
-	static std::unique_ptr<ExampleSubsystem> examplesubsystem;
-	static std::unique_ptr<OI> oi;
+class CommandBase: public Command{
+	public:
+		CommandBase(const std::string &name);
+		CommandBase();
+		static void init();
+		// Create a single static instance of all of your subsystems
+		static std::unique_ptr<DriveTrain> drivetrain;
+		static std::unique_ptr<OI> oi;
 };
 
 #endif
