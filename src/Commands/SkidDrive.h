@@ -5,7 +5,7 @@
 #include "WPILib.h"
 #include "../RAR/RARMath.h"
 
-class SkidDrive: public CommandBase{
+class SkidDrive:public CommandBase{
 	public:
 		SkidDrive();
 		void Initialize();

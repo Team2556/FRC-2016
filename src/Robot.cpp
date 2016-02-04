@@ -1,3 +1,5 @@
+#include <thread>
+#include <AHRS.h>
 #include "WPILib.h"
 #include "Commands/Command.h"
 #include "CommandBase.h"
@@ -5,7 +7,9 @@
 class Robot:public IterativeRobot{
 private:
 	std::unique_ptr<Command> autonomousCommand;
-	SendableChooser *chooser;
+	//SendableChooser *chooser;
+	LiveWindow *LW = LiveWindow::GetInstance();
+	AHRS *IMU = new AHRS(SPI::Port::kMXP);
 	void RobotInit(){
 		CommandBase::init();
 		/*chooser = new SendableChooser();
@@ -43,7 +47,7 @@ private:
 			autonomousCommand.reset(new ExampleCommand());
 		} */
 
-		autonomousCommand.reset((Command *)chooser->GetSelected());
+		//autonomousCommand.reset((Command *)chooser->GetSelected());
 
 		if (autonomousCommand != NULL)
 			autonomousCommand->Start();
@@ -64,6 +68,7 @@ private:
 
 	void TeleopPeriodic(){
 		Scheduler::GetInstance()->Run();
+		std::cout << IMU->GetYaw() << std::endl;
 	}
 
 	void TestPeriodic(){

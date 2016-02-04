@@ -4,6 +4,7 @@
 #include <string>
 #include "Commands/Command.h"
 #include "Subsystems/DriveTrain.h"
+#include "Subsystems/Shooter.h"
 #include "OI.h"
 #include "WPILib.h"
 
@@ -19,6 +20,7 @@ class CommandBase: public Command{
 		static void init();
 		// Create a single static instance of all of your subsystems
 		static std::unique_ptr<DriveTrain> drivetrain;
+		static std::unique_ptr<Shooter> shooter;
 		static std::unique_ptr<OI> oi;
 };
 
