@@ -25,8 +25,7 @@ public:
 	void InitDefaultCommand();
 	void SetBananas(int TopAngle, int BottomAngle);
 	void SetAngle(int Angle);
-	void Load();
-	void Shoot(int Power);
+	void SetMotors(float TopPower, float BottomPower);
 };
 
 #endif

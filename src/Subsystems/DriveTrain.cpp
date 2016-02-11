@@ -1,4 +1,3 @@
-#include <Commands/SkidDrive.h>
 #include "DriveTrain.h"
 #include "../RobotMap.h"
 
@@ -10,7 +9,7 @@ DriveTrain::DriveTrain():Subsystem("DriveTrain"){
 }
 
 void DriveTrain::InitDefaultCommand(){
-	SetDefaultCommand(new SkidDrive());
+	//SetDefaultCommand(new SkidDrive());
 }
 
 void DriveTrain::Drive(float Power, float Rotation){

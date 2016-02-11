@@ -1,21 +1,21 @@
-#include <thread>
-#include <AHRS.h>
 #include "WPILib.h"
 #include "Commands/Command.h"
 #include "CommandBase.h"
 
+#include "Commands/Autonomous/AutonomousMain.h"
+#include "Commands/Teleoperated/SkidDrive.h"
+
 class Robot:public IterativeRobot{
 private:
-	std::unique_ptr<Command> autonomousCommand;
-	//SendableChooser *chooser;
-	LiveWindow *LW = LiveWindow::GetInstance();
-	AHRS *IMU = new AHRS(SPI::Port::kMXP);
+	LiveWindow *LW;
+
+	AutonomousMain *AutonomousCommand = new AutonomousMain();
+	SkidDrive *TeleopCommand = new SkidDrive();
+
 	void RobotInit(){
+		LW = LiveWindow::GetInstance();
+
 		CommandBase::init();
-		/*chooser = new SendableChooser();
-		chooser->AddDefault("Default Auto", new ExampleCommand());
-		chooser->AddObject("My Auto", new MyAutoCommand());
-		SmartDashboard::PutData("Auto Modes", chooser);*/
 	}
 
 	/**
@@ -40,17 +40,8 @@ private:
 	 * or additional comparisons to the if-else structure below with additional strings & commands.
 	 */
 	void AutonomousInit(){
-		/* std::string autoSelected = SmartDashboard::GetString("Auto Selector", "Default");
-		if(autoSelected == "My Auto") {
-			autonomousCommand.reset(new MyAutoCommand());
-		} else {
-			autonomousCommand.reset(new ExampleCommand());
-		} */
-
-		//autonomousCommand.reset((Command *)chooser->GetSelected());
-
-		if (autonomousCommand != NULL)
-			autonomousCommand->Start();
+		if (AutonomousCommand != NULL)
+			AutonomousCommand->Start();
 	}
 
 	void AutonomousPeriodic(){
@@ -62,13 +53,19 @@ private:
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove
 		// this line or comment it out.
-		if (autonomousCommand != NULL)
-			autonomousCommand->Cancel();
+		/*if (autonomousCommand != NULL)
+			autonomousCommand->Cancel();*/
+		if(TeleopCommand != NULL)
+			TeleopCommand->Start();
 	}
 
 	void TeleopPeriodic(){
 		Scheduler::GetInstance()->Run();
-		std::cout << IMU->GetYaw() << std::endl;
+
+		/*if(IMU){
+			std::cout << "Angle: " << IMU->GetAngle() << std::endl;
+			std::cout << "Compass Heading: " << IMU->GetCompassHeading() << std::endl;
+		}*/
 	}
 
 	void TestPeriodic(){

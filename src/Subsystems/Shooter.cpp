@@ -6,13 +6,10 @@ Shooter::Shooter():Subsystem("Shooter"){
 	BottomBanana = new Servo(BOTTOM_BANANA_SERVO);
 	TopShooter = new CANTalon(TOP_SHOOTER_MOTOR);
 	BottomShooter = new CANTalon(TOP_SHOOTER_MOTOR);
-
-	LiveWindow *LW = LiveWindow::GetInstance();
-	LW->AddActuator("Shooter", "Servo1", TopBanana);
 }
 
 void Shooter::InitDefaultCommand(){
-	// Set the default command for a subsystem here.
+	//Set the default command for a subsystem here.
 	//SetDefaultCommand(new MySpecialCommand());
 }
 
@@ -25,12 +22,9 @@ void Shooter::SetAngle(int Angle){
 
 }
 
-void Shooter::Load(){
-
-}
-
-void Shooter::Shoot(int Power){
-
+void Shooter::SetMotors(float TopPower, float BottomPower){
+	TopShooter->Set(TopPower);
+	BottomShooter->Set(BottomPower);
 }
 // Put methods for controlling this subsystem
 // here. Call these from Commands.
