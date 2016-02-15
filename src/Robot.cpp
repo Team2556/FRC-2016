@@ -1,20 +1,19 @@
 #include "WPILib.h"
 #include "Commands/Command.h"
 #include "CommandBase.h"
+#include "IMU.h"
 
 #include "Commands/Autonomous/AutonomousMain.h"
-#include "Commands/Teleoperated/SkidDrive.h"
+#include "Commands/Teleoperated/TeleopCommand.h"
+
+IMU *NavX = new IMU(SPI::Port::kMXP);
 
 class Robot:public IterativeRobot{
 private:
-	LiveWindow *LW;
-
-	AutonomousMain *AutonomousCommand = new AutonomousMain();
-	SkidDrive *TeleopCommand = new SkidDrive();
+	AutonomousMain *AutonomousC= new AutonomousMain();
+	TeleopCommand *TeleopC = new TeleopCommand();
 
 	void RobotInit(){
-		LW = LiveWindow::GetInstance();
-
 		CommandBase::init();
 	}
 
@@ -40,8 +39,8 @@ private:
 	 * or additional comparisons to the if-else structure below with additional strings & commands.
 	 */
 	void AutonomousInit(){
-		if (AutonomousCommand != NULL)
-			AutonomousCommand->Start();
+		if (AutonomousC != NULL)
+			AutonomousC->Start();
 	}
 
 	void AutonomousPeriodic(){
@@ -55,21 +54,23 @@ private:
 		// this line or comment it out.
 		/*if (autonomousCommand != NULL)
 			autonomousCommand->Cancel();*/
-		if(TeleopCommand != NULL)
-			TeleopCommand->Start();
+		if(TeleopC != NULL)
+			TeleopC->Start();
 	}
 
 	void TeleopPeriodic(){
 		Scheduler::GetInstance()->Run();
 
-		/*if(IMU){
-			std::cout << "Angle: " << IMU->GetAngle() << std::endl;
-			std::cout << "Compass Heading: " << IMU->GetCompassHeading() << std::endl;
-		}*/
+		if(NavX != NULL){
+			std::cout << "Adjusted Angle: " << NavX->GetAdjustedAngle() << std::endl;
+			std::cout << "Angle: " << NavX->GetAngle() << std::endl;
+		}
 	}
 
 	void TestPeriodic(){
 		LiveWindow::GetInstance()->Run();
+		if(TeleopC != NULL)
+			TeleopC->Start();
 	}
 };
 

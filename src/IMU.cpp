@@ -6,18 +6,22 @@
  */
 
 #include "IMU.h"
-/*
-IMU::IMU(){
-	//_IMU.reset(new AHRS(SPI::Port::kMXP));
-	//_DataThread.reset(new std::thread([this](){this->Thread();}));
+
+IMU::IMU(SPI::Port Port):AHRS(Port){
+	_DataThread.reset(new std::thread([this](){while(true){this->Thread();}}));
 }
 
 int IMU::GetAdjustedAngle(){
-	//float Angle = ;
-	return 0.98;
+	return _AdjustedAngle.load();
 }
 
 void IMU::Thread(){
-	_Angle = this->GetAngle();
-	_LinearAccel = {this->GetWorldLinearAccelX(), this->GetWorldLinearAccelY(), this->GetWorldLinearAccelZ()}
-}*/
+	_AdjustedAngle = _AdjustedAngle + this->GetAngle() * 0.01;
+
+	int Magnitude = std::abs(this->GetWorldLinearAccelX()) + std::abs(this->GetWorldLinearAccelY()) + std::abs(this->GetWorldLinearAccelZ());
+	if (Magnitude > 8192 && Magnitude < 32768){
+		float AccelVec = atan2f(this->GetWorldLinearAccelX(), this->GetWorldLinearAccelY()) * 180 / M_PI;
+		_AdjustedAngle = 0.98 * _AdjustedAngle + 0.02 * AccelVec;
+	}
+}
+

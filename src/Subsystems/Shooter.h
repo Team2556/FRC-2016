@@ -18,13 +18,12 @@ enum BottomBananaAngle{
 class Shooter:public Subsystem{
 private:
 	Servo *TopBanana, *BottomBanana;
-	CANTalon *TopShooter, *BottomShooter;
-	// Motors for angling shooter
+	CANTalon *TopShooter, *BottomShooter, *Gimbal;
 public:
 	Shooter();
 	void InitDefaultCommand();
-	void SetBananas(int TopAngle, int BottomAngle);
-	void SetAngle(int Angle);
+	void SetBananas(float TopAngle, float BottomAngle);
+	void SetGimbal(float Power);
 	void SetMotors(float TopPower, float BottomPower);
 };
 

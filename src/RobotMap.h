@@ -26,7 +26,9 @@ const int BACK_LEFT_MOTOR = 2;
 const int BACK_RIGHT_MOTOR = 4;
 
 const int TOP_SHOOTER_MOTOR = 5;
-const int BOTTOM_SHOOTER_MOTOR = 6;
+const int BOTTOM_SHOOTER_MOTOR = 7;
+
+const int SHOOTER_GIMBAL = 6;
 
 const int TOP_BANANA_SERVO = 0;
 const int BOTTOM_BANANA_SERVO = 1;
