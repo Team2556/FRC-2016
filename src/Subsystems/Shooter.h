@@ -6,7 +6,6 @@
 
 enum TopBananaAngle{
 	Top_Banana_Open,
-	Top_Banana_Lock,
 	Top_Banana_Closed
 };
 

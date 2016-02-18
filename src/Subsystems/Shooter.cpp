@@ -20,8 +20,8 @@ void Shooter::InitDefaultCommand(){
 }
 
 void Shooter::SetBananas(float TopAngle, float BottomAngle){
-	TopBanana->SetAngle(TopAngle);
-	BottomBanana->SetAngle(BottomAngle);
+	TopBanana->Set(TopAngle);
+	BottomBanana->Set(BottomAngle);
 }
 
 void Shooter::SetGimbal(float Power){
