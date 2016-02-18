@@ -4,7 +4,7 @@
 #include "CommandBase.h"
 #include "WPILib.h"
 
-class AlignToGoal:public PIDCommand{
+/*class AlignToGoal:public PIDCommand{
 private:
 	std::shared_ptr<NetworkTable> _Table;
 public:
@@ -16,6 +16,6 @@ public:
 	void Interrupted();
 	double ReturnPIDInput();
 	void UsePIDOutput(double Value);
-};
+};*/
 
 #endif

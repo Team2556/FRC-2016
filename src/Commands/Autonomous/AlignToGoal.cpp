@@ -1,5 +1,5 @@
 #include "AlignToGoal.h"
-
+/*
 AlignToGoal::AlignToGoal():PIDCommand("Goal Alignment", 1.0, 0.0, 0.0, 0.0){
 	Requires(CommandBase::drivetrain.get());
 
@@ -34,4 +34,4 @@ void AlignToGoal::End(){
 
 void AlignToGoal::Interrupted(){
 
-}
+}*/

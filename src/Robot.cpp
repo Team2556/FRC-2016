@@ -6,15 +6,18 @@
 #include "Commands/Autonomous/AutonomousMain.h"
 #include "Commands/Teleoperated/TeleopCommand.h"
 
-IMU *NavX = new IMU(SPI::Port::kMXP);
+IMU *NavX;
 
 class Robot:public IterativeRobot{
 private:
-	AutonomousMain *AutonomousC= new AutonomousMain();
-	TeleopCommand *TeleopC = new TeleopCommand();
+	AutonomousMain *AutonomousC;
+	TeleopCommand *TeleopC;
 
 	void RobotInit(){
 		CommandBase::init();
+		NavX = new IMU(SPI::Port::kMXP);
+		AutonomousC = new AutonomousMain();
+		TeleopC = new TeleopCommand();
 	}
 
 	/**
@@ -27,6 +30,10 @@ private:
 
 	void DisabledPeriodic(){
 		Scheduler::GetInstance()->Run();
+
+		for(;;){
+			std::cout << NavX->GetAdjustedAngle() << std::endl;
+		}
 	}
 
 	/**
@@ -60,11 +67,6 @@ private:
 
 	void TeleopPeriodic(){
 		Scheduler::GetInstance()->Run();
-
-		if(NavX != NULL){
-			std::cout << "Adjusted Angle: " << NavX->GetAdjustedAngle() << std::endl;
-			std::cout << "Angle: " << NavX->GetAngle() << std::endl;
-		}
 	}
 
 	void TestPeriodic(){

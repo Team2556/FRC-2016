@@ -9,18 +9,23 @@
 #define SRC_IMU_H_
 
 #include <AHRS.h>
-#include <atomic>
+#include <thread>
+#include <mutex>
 #include <cmath>
 #include <math.h>
+
+/*std::thread StartIMUThread();
+void IMUThread();*/
 
 class IMU:public AHRS{
 	private:
 		std::unique_ptr<std::thread> _DataThread;
 		std::atomic<float> _AdjustedAngle;
+		//std::thread StartThread();
+		void Thread();
 	public:
 		IMU(SPI::Port Port);
 		int GetAdjustedAngle();
-		void Thread();
 };
 
 #endif /* SRC_IMU_H_ */

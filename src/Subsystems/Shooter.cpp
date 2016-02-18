@@ -8,10 +8,10 @@ Shooter::Shooter():Subsystem("Shooter"){
 	BottomShooter = new CANTalon(BOTTOM_SHOOTER_MOTOR);
 	Gimbal = new CANTalon(SHOOTER_GIMBAL);
 
-	LiveWindow *LW = LiveWindow::GetInstance();
+	/*LiveWindow *LW = LiveWindow::GetInstance();
 
 	LW->AddActuator("Shooter", "Bottom Banana", BottomBanana);
-	LW->AddActuator("Shooter", "Top Banana", TopBanana);
+	LW->AddActuator("Shooter", "Top Banana", TopBanana);*/
 }
 
 void Shooter::InitDefaultCommand(){
