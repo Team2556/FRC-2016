@@ -4,6 +4,7 @@
 // Initialize a single static instance of all of your subsystems to NULL
 std::unique_ptr<DriveTrain> CommandBase::drivetrain;
 std::unique_ptr<Shooter> CommandBase::shooter;
+std::unique_ptr<Climber> CommandBase::climber;
 std::unique_ptr<OI> CommandBase::oi;
 
 CommandBase::CommandBase(const std::string &name):Command(name){
@@ -17,6 +18,7 @@ void CommandBase::init(){
 	// line should be repeated for each subsystem in the project.
 	drivetrain.reset(new DriveTrain());
 	shooter.reset(new Shooter());
+	climber.reset(new Climber());
 
 	oi.reset(new OI());
 }

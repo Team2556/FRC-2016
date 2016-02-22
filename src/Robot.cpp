@@ -31,9 +31,9 @@ private:
 	void DisabledPeriodic(){
 		Scheduler::GetInstance()->Run();
 
-		for(;;){
+		/*for(;;){
 			std::cout << NavX->GetAdjustedAngle() << std::endl;
-		}
+		}*/
 	}
 
 	/**

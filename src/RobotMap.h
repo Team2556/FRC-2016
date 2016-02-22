@@ -20,6 +20,7 @@
 //const int RANGE_FINDER_PORT = 1;
 //const int RANGE_FINDER_MODULE = 1;
 
+//CAN
 const int FRONT_LEFT_MOTOR = 1;
 const int FRONT_RIGHT_MOTOR = 3;
 const int BACK_LEFT_MOTOR = 2;
@@ -30,7 +31,14 @@ const int BOTTOM_SHOOTER_MOTOR = 7;
 
 const int SHOOTER_GIMBAL = 6;
 
+const int WINCH_1 = 8;
+const int WINCH_2 = 9;
+
+//PWM
 const int TOP_BANANA_SERVO = 0;
 const int BOTTOM_BANANA_SERVO = 1;
+
+//Analog
+const int POTENTIOMETER = 0;
 
 #endif

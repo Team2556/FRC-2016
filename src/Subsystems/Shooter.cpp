@@ -7,6 +7,7 @@ Shooter::Shooter():Subsystem("Shooter"){
 	TopShooter = new CANTalon(TOP_SHOOTER_MOTOR);
 	BottomShooter = new CANTalon(BOTTOM_SHOOTER_MOTOR);
 	Gimbal = new CANTalon(SHOOTER_GIMBAL);
+	Pot = new AnalogPotentiometer(POTENTIOMETER, 360, 15);
 
 	/*LiveWindow *LW = LiveWindow::GetInstance();
 
@@ -32,5 +33,10 @@ void Shooter::SetMotors(float TopPower, float BottomPower){
 	TopShooter->Set(TopPower);
 	BottomShooter->Set(-BottomPower);
 }
+
+float Shooter::getPot(){
+	return Pot->Get();
+}
+
 // Put methods for controlling this subsystem
 // here. Call these from Commands.

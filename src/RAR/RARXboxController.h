@@ -21,16 +21,16 @@
  * 		Left Trigger: 2 (0 to 1)
  * 		Right Trigger: 3 (0 to 1)
  * Buttons:
- * 		A: 0
- * 		B: 1
- * 		X: 2
- * 		Y: 3
- * 		Left Bumper: 4
- * 		Right Bumper: 5
- * 		Back: 6
- * 		Start: 7
- * 		Left Stick (Press): 8
- * 		Right Stick (Press): 9
+ * 		A: 1
+ * 		B: 2
+ * 		X: 3
+ * 		Y: 4
+ * 		Left Bumper: 5
+ * 		Right Bumper: 6
+ * 		Back: 7
+ * 		Start: 8
+ * 		Left Stick (Press): 9
+ * 		Right Stick (Press): 10
  */
 
 enum XboxAxis:int{ LeftX, LeftY, LeftT, RightT, RightX, RightY };
