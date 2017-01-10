@@ -29,10 +29,10 @@ void IMUThread(){
 }*/
 
 IMU::IMU(SPI::Port Port):AHRS(Port){
-	//_DataThread.reset(new std::thread([this](){while(true){this->Thread();}}));
-	//_DataThread.get()->detach();
-	_DataThread.reset(new std::thread(&IMU::Thread, this));
+	_DataThread.reset(new std::thread([this](){while(true){this->Thread();}}));
 	_DataThread.get()->detach();
+	/*_DataThread.reset(new std::thread(&IMU::Thread, this));
+	_DataThread.get()->detach();*/
 }
 
 int IMU::GetAdjustedAngle(){
@@ -40,11 +40,20 @@ int IMU::GetAdjustedAngle(){
 }
 
 void IMU::Thread(){
-	_AdjustedAngle = _AdjustedAngle + this->GetAngle() * 0.01;
+	/*_AdjustedAngle = _AdjustedAngle + this->GetAngle() * 0.01;
 
-	int Magnitude = std::abs(this->GetWorldLinearAccelX()) + std::abs(this->GetWorldLinearAccelY()) + std::abs(this->GetWorldLinearAccelZ());
-	if (Magnitude > 8192 && Magnitude < 32768){
+	SmartDashboard::PutNumber("Accelerometer X", this->GetWorldLinearAccelX());
+	SmartDashboard::PutNumber("Accelerometer Y", this->GetWorldLinearAccelY());
+	SmartDashboard::PutNumber("Accelerometer Z", this->GetWorldLinearAccelZ());
+
+	float Magnitude = std::abs(this->GetWorldLinearAccelX()) + std::abs(this->GetWorldLinearAccelY()) + std::abs(this->GetWorldLinearAccelZ());
+	SmartDashboard::PutNumber("Magnitude", Magnitude);
+	if (Magnitude > 0 && Magnitude < 10000){
 		float AccelVec = atan2f(this->GetWorldLinearAccelX(), this->GetWorldLinearAccelY()) * 180 / M_PI;
+		SmartDashboard::PutNumber("AccelVec", AccelVec);
 		_AdjustedAngle = 0.98 * _AdjustedAngle + 0.02 * AccelVec;
-	}
+	}else{
+		static int test = 0;
+		SmartDashboard::PutNumber("Test", test++);
+	}*/
 }

@@ -4,17 +4,28 @@
 Climber::Climber():Subsystem("Climber"){
 	Winch1 = new CANTalon(WINCH_1);
 	Winch2 = new CANTalon(WINCH_2);
+
+	LiftBottom = new CANTalon(BOTTOM_LIFT);
+	LiftTop = new CANTalon(TOP_LIFT);
+
+	Winch2->SetControlMode(CANSpeedController::kFollower);
+	Winch2->Set(WINCH_1);
+
+	Winch1->SetVoltageRampRate(6.0);
 }
 
-void Climber::InitDefaultCommand()
-{
-	// Set the default command for a subsystem here.
-	//SetDefaultCommand(new MySpecialCommand());
+void Climber::InitDefaultCommand(){
+
 }
 
 void Climber::setMotors(float motorPower){
 	Winch1->Set(motorPower);
-	Winch2->Set(motorPower);
 }
-// Put methods for controlling this subsystem
-// here. Call these from Commands.
+
+void Climber::bottomLift(float power){
+	LiftBottom->Set(power);
+}
+
+void Climber::topLift(float power){
+	LiftTop->Set(power);
+}

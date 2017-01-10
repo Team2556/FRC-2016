@@ -3,19 +3,21 @@
 
 #include "CommandBase.h"
 #include "WPILib.h"
+#include "IMU.h"
 
-/*class AlignToGoal:public PIDCommand{
+extern IMU *NavX;
+
+class AlignToGoal:public CommandBase{
 private:
 	std::shared_ptr<NetworkTable> _Table;
 public:
+	PIDController *PID;
 	AlignToGoal();
 	void Initialize();
 	void Execute();
 	bool IsFinished();
 	void End();
 	void Interrupted();
-	double ReturnPIDInput();
-	void UsePIDOutput(double Value);
-};*/
+};
 
 #endif

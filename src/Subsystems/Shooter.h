@@ -3,29 +3,32 @@
 
 #include "Commands/Subsystem.h"
 #include "WPILib.h"
+#include <algorithm>
 
-enum TopBananaAngle{
-	Top_Banana_Open,
-	Top_Banana_Closed
-};
-
-enum BottomBananaAngle{
-	Bottom_Banana_Open,
-	Bottom_Banana_Closed
-};
+/*inline float VoltageToAngle(float Voltage);
+inline float AngleToVoltage(float Angle);*/
 
 class Shooter:public Subsystem{
 private:
-	Servo *TopBanana, *BottomBanana;
-	CANTalon *TopShooter, *BottomShooter, *Gimbal;
-	Potentiometer *Pot;
+	Servo *TopBanana;
+	Talon *BottomBanana, *LEDLight;
+	DigitalInput *UpperLimit, *LowerLimit;
+	float SetPointStep;
+	float Ang;
 public:
+	CANTalon *TopShooter, *BottomShooter, *Gimbal;
+	PIDController *PID;
+	AnalogPotentiometer *Pot;
 	Shooter();
 	void InitDefaultCommand();
-	void SetBananas(float TopAngle, float BottomAngle);
+	void SetBananas(float TopAngle, float BottomPower);
 	void SetGimbal(float Power);
 	void SetMotors(float TopPower, float BottomPower);
-	float getPot();
+	void AutoShoot(float Scale);
+	void ResetPID();
+	void SetAngle(float Angle);
+	float GetAngle();
+	void SetLEDs(float Intensity);
 };
 
 #endif

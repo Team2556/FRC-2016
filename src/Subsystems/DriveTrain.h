@@ -4,7 +4,7 @@
 #include "Commands/Subsystem.h"
 #include "WPILib.h"
 
-class DriveTrain:public Subsystem{
+class DriveTrain:public Subsystem, public PIDOutput{
 	private:
 		CANTalon *FrontLeft;
 		CANTalon *FrontRight;
@@ -14,6 +14,7 @@ class DriveTrain:public Subsystem{
 		DriveTrain();
 		void InitDefaultCommand();
 		void Drive(float Power, float Rotation);
+		void PIDWrite(float Output);
 };
 
 #endif

@@ -27,5 +27,4 @@ class IMU:public AHRS{
 		IMU(SPI::Port Port);
 		int GetAdjustedAngle();
 };
-
 #endif /* SRC_IMU_H_ */
